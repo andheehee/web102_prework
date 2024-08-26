@@ -27,48 +27,47 @@ const gamesContainer = document.getElementById("games-container");
 
 // create a function that adds all data from the games array to the page
 function addGamesToPage(games) {
-  // loop over each item in the data
   for (let i = 0; i < games.length; i++) {
     const game = games[i];
 
-    // Create a new div element to hold the game info
-    const gameDiv = document.createElement("div");
-    gameDiv.classList.add("game");
+    // Create a new div element to hold the game card
+    const gameCard = document.createElement("div");
+    gameCard.classList.add("game-card"); // Add the class 'game-card' to the div
 
     // Create and append the game image
     const gameImg = document.createElement("img");
     gameImg.src = game.img;
     gameImg.alt = game.name;
-    gameDiv.appendChild(gameImg);
+    gameCard.appendChild(gameImg);
 
     // Create and append the game name
     const gameName = document.createElement("h2");
     gameName.textContent = game.name;
-    gameDiv.appendChild(gameName);
+    gameCard.appendChild(gameName);
 
     // Create and append the game description
     const gameDescription = document.createElement("p");
     gameDescription.textContent = game.description;
-    gameDiv.appendChild(gameDescription);
+    gameCard.appendChild(gameDescription);
 
     // Create and append the game pledge amount
     const gamePledged = document.createElement("p");
     gamePledged.textContent = `Pledged: $${game.pledged}`;
-    gameDiv.appendChild(gamePledged);
+    gameCard.appendChild(gamePledged);
 
     // Create and append the game goal amount
     const gameGoal = document.createElement("p");
     gameGoal.textContent = `Goal: $${game.goal}`;
-    gameDiv.appendChild(gameGoal);
+    gameCard.appendChild(gameGoal);
 
     // Create and append the number of backers
     const gameBackers = document.createElement("p");
     gameBackers.textContent = `Backers: ${game.backers}`;
-    gameDiv.appendChild(gameBackers);
+    gameCard.appendChild(gameBackers);
 
-    // Append the game div to the main container on the page
+    // Append the game card to the main container on the page
     const mainContainer = document.getElementById("mainContainer"); // Ensure your HTML has a div with id="mainContainer"
-    mainContainer.appendChild(gameDiv);
+    mainContainer.appendChild(gameCard);
   }
 }
 
