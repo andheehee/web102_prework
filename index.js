@@ -17,59 +17,32 @@ function deleteChildElements(parent) {
   }
 }
 
-/*****************************************************************************
- * Challenge 3: Add data about each game as a card to the games-container
- * Skills used: DOM manipulation, for loops, template literals, functions
- */
-
-// grab the element with the id games-container
 const gamesContainer = document.getElementById("games-container");
 
-// create a function that adds all data from the games array to the page
 function addGamesToPage(games) {
+  const gamesContainer = document.getElementById("games-container");
+
   for (let i = 0; i < games.length; i++) {
     const game = games[i];
 
-    // Create a new div element to hold the game card
     const gameCard = document.createElement("div");
-    gameCard.classList.add("game-card"); // Add the class 'game-card' to the div
+    gameCard.classList.add("game-card");
 
-    // Create and append the game image
-    const gameImg = document.createElement("img");
-    gameImg.src = game.img;
-    gameImg.alt = game.name;
-    gameCard.appendChild(gameImg);
+    gameCard.innerHTML = `
+      <img src="${game.img}" alt="${game.name}" class="game-img">
+      <h2>${game.name}</h2>
+      <p>${game.description}</p>
+      <p>Pledged: $${game.pledged.toLocaleString()}</p>
+      <p>Goal: $${game.goal.toLocaleString()}</p>
+      <p>Backers: ${game.backers.toLocaleString()}</p>
+    `;
 
-    // Create and append the game name
-    const gameName = document.createElement("h2");
-    gameName.textContent = game.name;
-    gameCard.appendChild(gameName);
-
-    // Create and append the game description
-    const gameDescription = document.createElement("p");
-    gameDescription.textContent = game.description;
-    gameCard.appendChild(gameDescription);
-
-    // Create and append the game pledge amount
-    const gamePledged = document.createElement("p");
-    gamePledged.textContent = `Pledged: $${game.pledged}`;
-    gameCard.appendChild(gamePledged);
-
-    // Create and append the game goal amount
-    const gameGoal = document.createElement("p");
-    gameGoal.textContent = `Goal: $${game.goal}`;
-    gameCard.appendChild(gameGoal);
-
-    // Create and append the number of backers
-    const gameBackers = document.createElement("p");
-    gameBackers.textContent = `Backers: ${game.backers}`;
-    gameCard.appendChild(gameBackers);
-
-    // Append the game card to the main container on the page
-    const mainContainer = document.getElementById("mainContainer"); // Ensure your HTML has a div with id="mainContainer"
-    mainContainer.appendChild(gameCard);
+    gamesContainer.appendChild(gameCard);
   }
 }
+
+// Call the addGamesToPage function with the GAMES_JSON array
+addGamesToPage(GAMES_JSON);
 
 // create a new div element, which will become the game card
 
