@@ -192,8 +192,6 @@ const descriptionElement = document.createElement("p");
 descriptionElement.innerHTML = displayStr;
 descriptionContainer.appendChild(descriptionElement);
 
-const descriptionElement = document.createElement("p");
-
 // Set the inner HTML of the paragraph element to the template string
 descriptionElement.innerHTML = displayStr;
 
