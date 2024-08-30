@@ -88,12 +88,10 @@ raisedCard.innerHTML = `$${totalRaised.toLocaleString()}`;
 // grab number of games card and set its inner HTML
 const gamesCard = document.getElementById("num-games");
 
-const totalgames = GAMES_JSON.reduce((total, game) => {
-  return total + game.name;
-}, 0);
+const totalgames = GAMES_JSON.length;
 
 // set inner HTML using template literal
-gamesCard.innerHTML = `${"11".toLocaleString()}`;
+gamesCard.innerHTML = `${totalgames.toLocaleString()}`;
 
 /*************************************************************************************
  * Challenge 5: Add functions to filter the funded and unfunded games
@@ -169,10 +167,38 @@ allBtn.addEventListener("click", showAllGames);
 const descriptionContainer = document.getElementById("description-container");
 
 // use filter or reduce to count the number of unfunded games
+const numUnfundedGames = GAMES_JSON.filter(
+  (game) => game.pledged < game.goal
+).length;
 
-// create a string that explains the number of unfunded games using the ternary operator
+const unfundedGamesStr = `There ${
+  numUnfundedGames === 1 ? "is" : "are"
+} ${numUnfundedGames} unfunded ${
+  numUnfundedGames === 1 ? "game" : "games"
+} remaining. Please consider funding!`;
+
+const displayStr = `A total of $${totalRaised.toLocaleString()} has been raised for ${totalgames} ${
+  totalgames === 1 ? "game" : "games"
+}. Currently, ${numUnfundedGames} ${
+  numUnfundedGames === 1 ? "game remains" : "games remain"
+} unfunded. We need your help to fund these amazing games!`;
 
 // create a new DOM element containing the template string and append it to the description container
+const unfundedGamesElement = document.createElement("p");
+unfundedGamesElement.innerHTML = unfundedGamesStr;
+descriptionContainer.appendChild(unfundedGamesElement);
+
+const descriptionElement = document.createElement("p");
+descriptionElement.innerHTML = displayStr;
+descriptionContainer.appendChild(descriptionElement);
+
+const descriptionElement = document.createElement("p");
+
+// Set the inner HTML of the paragraph element to the template string
+descriptionElement.innerHTML = displayStr;
+
+// Append the new paragraph element to the description container
+descriptionContainer.appendChild(descriptionElement);
 
 /************************************************************************************
  * Challenge 7: Select & display the top 2 games
