@@ -39,6 +39,8 @@ body {
     text-align: center;
 }
 
+
+
 #num-contributions, #total-raised, #num-games {
     font-size: 50px;
 }
@@ -62,7 +64,15 @@ body {
     width: 300px;
     text-align: center;
     border-radius: 7px;
+    opacity: 1;
+  transform: translateY(100px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
+
+.scrollAnimation {
+    opacity: 0;
+    transform: translateY(0);
+  }
 
 .game-card:hover {
     cursor: pointer;
@@ -84,4 +94,7 @@ button {
 button:hover {
     cursor: pointer;
     box-shadow: 0 0 30px lightblue;
+    
 }
+
+  

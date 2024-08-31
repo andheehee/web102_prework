@@ -222,3 +222,30 @@ firstGameContainer.appendChild(firstGameElement);
 const secondGameElement = document.createElement("p");
 secondGameElement.innerHTML = `${secondGame.name}`;
 secondGameContainer.appendChild(secondGameElement);
+
+// Search Bar Code
+// Function to handle searching games by name
+function searchGames() {
+  const searchInput = document.getElementById("search-bar").value.toLowerCase();
+
+  // Filter games based on the search input
+  const filteredGames = GAMES_JSON.filter((game) => {
+    return game.name.toLowerCase().includes(searchInput);
+  });
+
+  // Update the page with the filtered games
+  deleteChildElements(gamesContainer);
+  addGamesToPage(filteredGames);
+}
+
+// Add event listener for the search button
+const searchBtn = document.getElementById("search-btn");
+searchBtn.addEventListener("click", searchGames);
+
+// Optional: Add event listener for pressing "Enter" in the search bar
+const searchBar = document.getElementById("search-bar");
+searchBar.addEventListener("keypress", (event) => {
+  if (event.key === "Enter") {
+    searchGames();
+  }
+});
